@@ -9,13 +9,13 @@ import Hero from './components/Hero'
 function App() {
   return (
     <div className="App">
-      <Header/>
+      {/* <Header/> */}
       <Hero/>
       <div className = 'container'>
         <PhotoGallery/>
       </div>
 
-      <Footer/>
+      {/* <Footer/> */}
     </div>
   );
 }
