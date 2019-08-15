@@ -1,7 +1,6 @@
 import React,{useState, useEffect} from 'react';
-import axios from 'axios'
-import { conditionalExpression } from '@babel/types';
-// import PhotoImg from './PhotoImg'
+import axios from 'axios';
+import PhotoImg from './PhotoImg';
 
 export default function PhotoGallery() {
 
@@ -17,25 +16,44 @@ export default function PhotoGallery() {
         `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate() -6}`,
     ]
 
-    const imgInfo = {
-        imgUrls: [],
-        imgTitles: []
-    }
+    const [img1Url, setImg1Url] =useState([])
+    const [img2Url, setImg2Url] =useState([])
+    const [img3Url, setImg3Url] =useState([])
+
+    const [img1Title, setImg1Title] =useState([])
+    const [img2Title, setImg2Title] =useState([])
+    const [img3Title, setImg3Title] =useState([])
+
+
 
     useEffect(() => {
-        dates.forEach((date) => {
-            axios
-            .get(`https://api.nasa.gov/planetary/apod?api_key=70RsLTRueVyts0FPjdGIT8uYemieZOOBShWPnb7G&date=${date}`)
-            .then(res =>{
-                imgInfo.imgUrls.push(res.data.url)
-                imgInfo.imgTitles.push(res.data.title)
+             
+            axios.get(`https://api.nasa.gov/planetary/apod?api_key=70RsLTRueVyts0FPjdGIT8uYemieZOOBShWPnb7G&date=${dates[0]}`)
+            .then(res =>{    
+                setImg1Url(res.data.url)
+                setImg1Title(res.data.title)
             })
-        })
+            
+            axios.get(`https://api.nasa.gov/planetary/apod?api_key=70RsLTRueVyts0FPjdGIT8uYemieZOOBShWPnb7G&date=${dates[1]}`)
+            .then(res =>{    
+                setImg2Url(res.data.url)
+                setImg2Title(res.data.title)
+
+            })            
+            
+            axios.get(`https://api.nasa.gov/planetary/apod?api_key=70RsLTRueVyts0FPjdGIT8uYemieZOOBShWPnb7G&date=${dates[2]}`)
+            .then(res =>{    
+                setImg3Url(res.data.url)
+                setImg3Title(res.data.title)
+
+            })            
+
     }, [])
-    console.log(imgInfo)
     return (
-        <div>
-            {/* <PhotoImg /> */}
+        <div className = 'gallery-container'>
+            <PhotoImg imgUrl ={img1Url} title = {img1Title}/>
+            <PhotoImg imgUrl ={img2Url} title = {img2Title}/>
+            <PhotoImg imgUrl ={img3Url} title = {img3Title}/>
         </div>
     );
 };   
