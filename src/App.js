@@ -1,17 +1,18 @@
 import React from "react";
-import "./App.css";
-import Header from './components/Header'
+import "./App.scss";
+import HeaderComponent from './components/Header'
 import Footer from './components/Footer'
 import PhotoGallery from './components/PhotoGallery'
-import Hero from './components/Hero'
+import MenuEx from "./components/MenuEx";
 
 
 function App() {
   return (
     <div className="App">
-      {/* <Header/> */}
-      <Hero/>
+      <MenuEx/>
       <div className = 'container'>
+        <HeaderComponent/>
+        <h1>The Past 3 Pics Ot The Day</h1>
         <PhotoGallery/>
       </div>
 
