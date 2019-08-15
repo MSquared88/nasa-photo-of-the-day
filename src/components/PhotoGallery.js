@@ -59,7 +59,7 @@
 // };   
 
 import React,{useState, useEffect} from 'react'
-import { Card } from 'semantic-ui-react'
+import {  Card, Icon, Image} from 'semantic-ui-react'
 import axios from 'axios';
 // import PhotoImg from './PhotoImg';
 
@@ -72,9 +72,6 @@ function PhotoGallery() {
         `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate() -1}`,
         `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate() -2}`,
         `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate() -3}`,
-        `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate() -4}`,
-        `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate() -5}`,
-        `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate() -6}`,
     ]
 
     const [img1Url, setImg1Url] =useState([])
@@ -112,10 +109,21 @@ function PhotoGallery() {
     }, [])
     
     return (
-        <Card.Group centered itemsPerRow={3}>
-            <Card color='red' image={img1Url} />
-            <Card color='orange' image={img2Url} />
-            <Card color='yellow' image={img3Url} />
+        <Card.Group centered itemsPerRow={3}>            
+            <Card>
+                <Card.Header>{img1Title}</Card.Header>
+                <Image src={img1Url} wrapped ui={false} />
+            </Card>
+
+            <Card>
+                <Card.Header>{img2Title}</Card.Header>
+                <Image src={img2Url} wrapped ui={false} />
+            </Card>            
+            
+            <Card>
+                <Card.Header>{img3Title}</Card.Header>
+                <Image src={img3Url} wrapped ui={false} />
+            </Card>
         </Card.Group>
     )
 }
